@@ -80,6 +80,17 @@ divide:
   jmp .done
 
 .all_negative:
+  cmpq $0, %r9
+  jge .finish_all_negative
+
+  incq %r14
+  subq %r10, %r9
+
+  jmp .all_negative
+
+.finish_all_negative:
+  movq %r9, %r15
+  jmp .done
 
 .done:
   movq $0, %r13                       # Make r13 index of array 
