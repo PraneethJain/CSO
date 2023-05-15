@@ -49,6 +49,18 @@ divide:
   jmp .done
 
 .num_neg_den_pos:
+  cmpq $0, %r9
+  jge .finish_num_neg_den_pos
+
+  incq %r14
+  addq %r10, %r9
+
+  jmp .num_neg_den_pos
+
+.finish_num_neg_den_pos:
+  negq %r14
+  movq %r9, %r15
+  jmp .done
 
 .num_pos_den_neg:
 
