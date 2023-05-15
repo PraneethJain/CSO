@@ -12,7 +12,7 @@ get_sum:
   je .done                  # Stop
 
   mov (%rdi,%r10,8), %rax   # Move dividend in its register
-  mov $0, %rdx
+  cqto                      # Sign extend rax into rdx
   idiv %r12                 # Perform the division 
   cmp $0, %rdx              # Check remainder
   je .cond_add              # Add if zero remainder 

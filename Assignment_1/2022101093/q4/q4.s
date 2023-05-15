@@ -13,7 +13,7 @@ get_product_assembly:
   je .done                                # If equal, then done
 
   incq %r9                                # Increment loop index
-  movq $0, %rdx
+  cqto                                    # Sign extend rax into rdx
   imulq (%rdi)                            # Product stored in rdx rax
   idivq %r11                              # Taking module with LLMAX
   movq %rdx, %rax                         # Remainder now stored in return value
