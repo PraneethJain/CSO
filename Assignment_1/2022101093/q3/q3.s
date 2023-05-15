@@ -63,6 +63,21 @@ divide:
   jmp .done
 
 .num_pos_den_neg:
+  cmpq $0, %r9
+  jl .finish_num_pos_den_neg
+
+  incq %r14
+  addq %r10, %r9
+
+  jmp .num_pos_den_neg
+
+.finish_num_pos_den_neg:
+  movq %r9, %r15
+  negq %r10
+  negq %r14
+  addq %r10, %r15
+  incq %r14
+  jmp .done
 
 .all_negative:
 
